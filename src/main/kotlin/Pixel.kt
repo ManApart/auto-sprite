@@ -1,2 +1,2 @@
-data class Pixel(val x: Int = 0, val y: Int = 0, var color: Int = 0) {
+data class Pixel(val x: Int = 0, val y: Int = 0, val color: Int = 0) {
 }

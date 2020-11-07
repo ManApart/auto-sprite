@@ -8,8 +8,8 @@ fun convertImage(path: String) {
     val backgroundColor = findBackgroundColor(image)
     image.sprites = findSprites(image, backgroundColor)
 
-    image.replace(backgroundColor, 0)
-    imageTools.writeImage("./converted/$path", image)
+    val transparentImage = image.replace(backgroundColor, 0)
+    imageTools.writeImage("./converted/$path", transparentImage)
 }
 
 

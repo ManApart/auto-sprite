@@ -21,7 +21,10 @@ private fun findSprite(seed: Pixel, image: SpriteSheet, backgroundColor: Int): S
         open.remove(next)
         closed.add(next)
 
-        val neighbors = image.getNeighbors(next).filter { it.color != backgroundColor }.filter { !closed.contains(it) }
+        val neighbors = image.getNeighbors(next)
+            .filter { it.color != backgroundColor }
+            .filter { !closed.contains(it) }
+            .filter { !open.contains(it) }
         open.addAll(neighbors)
     }
     return Sprite(pixels)
