@@ -18,10 +18,6 @@ fun findBackgroundColor(image: SpriteSheet): Int {
     return pixelsByColor.entries.maxByOrNull { it.value.size }?.key ?: 0
 }
 
-fun determineBoundingBoxes() {
-
-}
-
 fun calculateGrid() {
 
 }
