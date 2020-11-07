@@ -19,9 +19,7 @@ fun findBackgroundColor(image: SpriteSheet): Int {
     return pixelsByColor.entries.maxByOrNull { it.value.size }?.key ?: 0
 }
 
-fun calculateGrid() {
 
-}
 
 fun redistributeSprites() {
 

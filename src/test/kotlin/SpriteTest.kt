@@ -37,4 +37,23 @@ class SpriteTest {
         assertEquals(5.0, sprite.rectangle.maxY)
     }
 
+    @Test
+    fun move() {
+        val sprite = Sprite(
+            listOf(
+                Pixel(0, 0),
+                Pixel(10, 5)
+            )
+        )
+
+        val moved = sprite.moveTo(3, 4)
+
+        assertEquals(3, moved.rectangle.x)
+        assertEquals(4, moved.rectangle.y)
+        assertEquals(3, moved.pixels.first().x)
+        assertEquals(4, moved.pixels.first().y)
+        assertEquals(13, moved.pixels.last().x)
+        assertEquals(9, moved.pixels.last().y)
+    }
+
 }

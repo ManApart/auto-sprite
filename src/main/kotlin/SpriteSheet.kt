@@ -1,4 +1,5 @@
 class SpriteSheet(val pixels: Map<Pair<Int, Int>, Pixel>, var sprites: List<Sprite> = listOf()) {
+    constructor(sprites: List<Sprite>) : this(spritesToPixels(sprites), sprites)
 
     val width by lazy { (pixels.keys.maxByOrNull { it.first }?.first ?: -1) + 1 }
 
@@ -43,4 +44,8 @@ class SpriteSheet(val pixels: Map<Pair<Int, Int>, Pixel>, var sprites: List<Spri
         )
     }
 
+}
+
+private fun spritesToPixels(sprites: List<Sprite>): Map<Pair<Int, Int>, Pixel> {
+    return sprites.flatMap {it.pixels}.associateBy { Pair(it.x, it.y) }
 }

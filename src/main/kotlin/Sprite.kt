@@ -10,4 +10,8 @@ class Sprite(val pixels: List<Pixel>) {
         val maxY = pixels.maxByOrNull { it.y }?.y ?: 0
         return Rectangle(minX, minY, maxX - minX, maxY - minY)
     }
+
+    fun moveTo(x: Int, y: Int): Sprite {
+        return Sprite(this.pixels.map { Pixel(it.x + x, it.y + y, it.color) })
+    }
 }
