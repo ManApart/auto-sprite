@@ -1,5 +1,6 @@
 import org.testng.annotations.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 
 class SpriteSheetTest {
 
@@ -27,16 +28,39 @@ class SpriteSheetTest {
         assertEquals(1, findBackgroundColor(image))
     }
 
-}
+    @Test
+    fun findNeighbors() {
+        val image = buildSpriteSheet(
+            listOf(
+                listOf(1, 0, 1),
+                listOf(0, 1, 0),
+                listOf(1, 0, 1)
+            )
+        )
+        val neighbors = image.getNeighbors(1, 1)
 
-
-fun buildSpriteSheet(plan: List<List<Int>>): SpriteSheet {
-    val image = mutableMapOf<Pair<Int, Int>, Pixel>()
-    plan.indices.forEach { y ->
-        plan[y].indices.forEach { x ->
-            val planType = plan[y][x]
-            image[x to y] = Pixel(x, y, planType)
-        }
+        assertNotNull(neighbors.firstOrNull{it.x == 0 && it.y == 1})
+        assertNotNull(neighbors.firstOrNull{it.x == 1 && it.y == 0})
+        assertNotNull(neighbors.firstOrNull{it.x == 1 && it.y == 2})
+        assertNotNull(neighbors.firstOrNull{it.x == 2 && it.y == 1})
     }
-    return SpriteSheet(image)
+
+    @Test
+    fun findNeighborsOnEdge() {
+        val image = buildSpriteSheet(
+            listOf(
+                listOf(1, 0, 1),
+                listOf(0, 1, 0),
+                listOf(1, 0, 1)
+            )
+        )
+        val neighbors = image.getNeighbors(2, 1)
+
+        assertNotNull(neighbors.firstOrNull{it.x == 1 && it.y == 1})
+        assertNotNull(neighbors.firstOrNull{it.x == 2 && it.y == 0})
+        assertNotNull(neighbors.firstOrNull{it.x == 2 && it.y == 2})
+    }
+
 }
+
+
