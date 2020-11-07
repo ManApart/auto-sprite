@@ -4,6 +4,16 @@ class SpriteSheet(val pixels: Map<Pair<Int, Int>, Pixel>, var sprites: List<Spri
 
     val height by lazy { (pixels.keys.maxByOrNull { it.second }?.second ?: -1) + 1 }
 
+    fun replace(pixels: List<Pixel>): SpriteSheet {
+        val newPixels = this.pixels.toMutableMap()
+
+        pixels.forEach {
+            newPixels[it.x to it.y] = it
+        }
+
+        return SpriteSheet(newPixels, sprites)
+    }
+
     fun replace(color: Int, replacement: Int): SpriteSheet {
         val newPixels = pixels.entries.map {
             val newPixel = replaceColor(it.value, color, replacement)

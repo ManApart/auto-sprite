@@ -1,5 +1,5 @@
 fun main() {
-    convertImage("/SpriteTest.png")
+    convertImage("SpriteTest.png")
 }
 
 fun convertImage(path: String) {
@@ -8,10 +8,11 @@ fun convertImage(path: String) {
     val backgroundColor = findBackgroundColor(image)
     image.sprites = findSprites(image, backgroundColor)
 
+    imageTools.writeBoundingBoxes("./converted/bounding-$path", image)
+
     val transparentImage = image.replace(backgroundColor, 0)
     imageTools.writeImage("./converted/$path", transparentImage)
 }
-
 
 fun findBackgroundColor(image: SpriteSheet): Int {
     val pixelsByColor = image.pixels.values.groupBy { it.color }
