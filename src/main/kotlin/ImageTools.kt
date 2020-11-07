@@ -28,15 +28,15 @@ class ImageTools {
         ImageIO.write(bufferedImage, "png", File(path))
     }
 
-    fun writeBoundingBoxes(path: String, image: SpriteSheet) {
-        val bufferedImage = BufferedImage(image.width, image.height, BufferedImage.TYPE_INT_ARGB);
+    fun writeBoundingBoxes(path: String, sprites: List<Sprite>, width: Int, height: Int) {
+        val bufferedImage = BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
         val graph: Graphics2D = bufferedImage.createGraphics()
         graph.color = Color.BLACK
-        graph.fill(Rectangle(0,0, image.width, image.height))
+        graph.fill(Rectangle(0, 0, width, height))
         graph.color = Color.white
 
-        image.sprites.forEach {
+        sprites.forEach {
             graph.fill(it.rectangle)
         }
 

@@ -56,4 +56,23 @@ class SpriteTest {
         assertEquals(9, moved.pixels.last().y)
     }
 
+    @Test
+    fun moveNegative() {
+        val sprite = Sprite(
+            listOf(
+                Pixel(20, 20),
+                Pixel(22, 21)
+            )
+        )
+
+        val moved = sprite.moveTo(0, 0)
+
+        assertEquals(0, moved.rectangle.x)
+        assertEquals(0, moved.rectangle.y)
+        assertEquals(0, moved.pixels.first().x)
+        assertEquals(0, moved.pixels.first().y)
+        assertEquals(2, moved.pixels.last().x)
+        assertEquals(1, moved.pixels.last().y)
+    }
+
 }

@@ -12,6 +12,9 @@ class Sprite(val pixels: List<Pixel>) {
     }
 
     fun moveTo(x: Int, y: Int): Sprite {
-        return Sprite(this.pixels.map { Pixel(it.x + x, it.y + y, it.color) })
+        val offsetX = x - rectangle.x
+        val offsetY = y - rectangle.y
+
+        return Sprite(this.pixels.map { Pixel(it.x + offsetX, it.y + offsetY, it.color) })
     }
 }

@@ -1,5 +1,5 @@
-class SpriteSheet(val pixels: Map<Pair<Int, Int>, Pixel>, var sprites: List<Sprite> = listOf()) {
-    constructor(sprites: List<Sprite>) : this(spritesToPixels(sprites), sprites)
+class SpriteSheet(val pixels: Map<Pair<Int, Int>, Pixel>) {
+    constructor(sprites: List<Sprite>) : this(spritesToPixels(sprites))
 
     val width by lazy { (pixels.keys.maxByOrNull { it.first }?.first ?: -1) + 1 }
 
@@ -12,7 +12,7 @@ class SpriteSheet(val pixels: Map<Pair<Int, Int>, Pixel>, var sprites: List<Spri
             newPixels[it.x to it.y] = it
         }
 
-        return SpriteSheet(newPixels, sprites)
+        return SpriteSheet(newPixels)
     }
 
     fun replace(color: Int, replacement: Int): SpriteSheet {
@@ -20,7 +20,7 @@ class SpriteSheet(val pixels: Map<Pair<Int, Int>, Pixel>, var sprites: List<Spri
             val newPixel = replaceColor(it.value, color, replacement)
             it.key to newPixel
         }.toMap()
-        return SpriteSheet(newPixels, sprites)
+        return SpriteSheet(newPixels)
     }
 
     private fun replaceColor(pixel: Pixel, search: Int, replacement: Int): Pixel {

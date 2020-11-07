@@ -6,12 +6,14 @@ fun convertImage(path: String) {
     val imageTools = ImageTools()
     val image = imageTools.loadImage(path)
     val backgroundColor = findBackgroundColor(image)
-    image.sprites = findSprites(image, backgroundColor)
+    val sprites = findSprites(image, backgroundColor)
 
-    imageTools.writeBoundingBoxes("./converted/bounding-$path", image)
+    imageTools.writeBoundingBoxes("./converted/bounding-$path", sprites, image.width, image.height)
 
-    val transparentImage = image.replace(backgroundColor, 0)
-    imageTools.writeImage("./converted/$path", transparentImage)
+    val grid = calculateGrid(sprites)
+
+    val converted = createSpriteSheet(grid, sprites)
+    imageTools.writeImage("./converted/$path", converted)
 }
 
 fun findBackgroundColor(image: SpriteSheet): Int {
@@ -21,8 +23,5 @@ fun findBackgroundColor(image: SpriteSheet): Int {
 
 
 
-fun redistributeSprites() {
-
-}
 
 
