@@ -20,6 +20,19 @@ class SpriteFinderTest {
     }
 
     @Test
+    fun ignoreSinglePixels() {
+        val image = buildSpriteSheet(
+            listOf(
+                listOf(0, 0),
+                listOf(1, 0),
+            )
+        )
+        val sprites = findSprites(image, 0)
+
+        assertEquals(0, sprites.size)
+    }
+
+    @Test
     fun findTwoSprites() {
         val image = buildSpriteSheet(
             listOf(

@@ -7,7 +7,7 @@ fun findSprites(image: SpriteSheet, backgroundColor: Int = 0): List<Sprite> {
         seeds.removeAll(sprite.pixels)
     }
 
-    return sprites
+    return sprites.filter { it.pixels.size > 1 }
 }
 
 private fun findSprite(seed: Pixel, image: SpriteSheet, backgroundColor: Int): Sprite {

@@ -1,12 +1,13 @@
 import java.io.File
 
 fun main() {
-//    File("./input").listFiles()!!.forEach {
-//        convertImage(it.path)
-//    }
-    File("./input").listFiles()!!.filter { it.path.contains("WideStrip") }.forEach {
+    File("./input").listFiles()!!.forEach {
+        println("Converting ${it.name}")
         convertImage(it.path)
     }
+//    File("./input").listFiles()!!.filter { it.path.contains("WideStrip") }.forEach {
+//        convertImage(it.path)
+//    }
 }
 
 fun convertImage(path: String, createBoundingBoxes: Boolean = false) {
