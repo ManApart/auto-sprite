@@ -1,2 +1,1 @@
-class Grid {
-}
+class Grid(val width: Int, val height: Int, val columns: Int)

@@ -1,9 +1,12 @@
-import java.awt.Rectangle
+import kotlin.math.sqrt
+
 // TODO - increments of 8
 // TODO - variable sizes
-// TODO - store image width
-fun calculateGrid(sprites: List<Sprite>): Rectangle {
+fun calculateGrid(sprites: List<Sprite>): Grid {
     val width = sprites.maxByOrNull { it.rectangle.width }?.rectangle?.width ?: 0
     val height = sprites.maxByOrNull { it.rectangle.height }?.rectangle?.height ?: 0
-    return Rectangle(0,0, width, height)
+
+    val columnsPerRow = sprites.size / sqrt(sprites.size.toFloat()).toInt()
+
+    return Grid(width, height, columnsPerRow)
 }
