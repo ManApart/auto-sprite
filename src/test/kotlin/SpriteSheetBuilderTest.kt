@@ -22,10 +22,10 @@ class SpriteSheetBuilderTest {
 
         val image = createSpriteSheet(Grid(8, 16, 10), sprites)
 
-        assertEquals(1, image.pixels[0 to 0]?.color)
-        assertEquals(1, image.pixels[7 to 15]?.color)
-        assertEquals(1, image.pixels[8 to 0]?.color)
-        assertEquals(1, image.pixels[16 to 15]?.color)
+        assertEquals(1, image.pixels[0 to 0]?.color?.rgb)
+        assertEquals(1, image.pixels[7 to 15]?.color?.rgb)
+        assertEquals(1, image.pixels[8 to 0]?.color?.rgb)
+        assertEquals(1, image.pixels[16 to 15]?.color?.rgb)
 
     }
 
@@ -48,10 +48,10 @@ class SpriteSheetBuilderTest {
 
         val image = createSpriteSheet(Grid(8, 16, 1), sprites)
 
-        assertEquals(1, image.pixels[0 to 0]?.color)
-        assertEquals(1, image.pixels[7 to 15]?.color)
-        assertEquals(1, image.pixels[0 to 16]?.color)
-        assertEquals(1, image.pixels[8 to 31]?.color)
+        assertEquals(1, image.pixels[0 to 0]?.color?.rgb)
+        assertEquals(1, image.pixels[7 to 15]?.color?.rgb)
+        assertEquals(1, image.pixels[0 to 16]?.color?.rgb)
+        assertEquals(1, image.pixels[8 to 31]?.color?.rgb)
 
     }
 
@@ -74,10 +74,10 @@ class SpriteSheetBuilderTest {
 
         val image = createSpriteSheet(Grid(8, 16, 10), sprites)
 
-        assertEquals(1, image.pixels[0 to 5]?.color)
-        assertEquals(1, image.pixels[7 to 15]?.color)
-        assertEquals(1, image.pixels[8 to 0]?.color)
-        assertEquals(1, image.pixels[16 to 15]?.color)
+        assertEquals(1, image.pixels[0 to 5]?.color?.rgb)
+        assertEquals(1, image.pixels[7 to 15]?.color?.rgb)
+        assertEquals(1, image.pixels[8 to 0]?.color?.rgb)
+        assertEquals(1, image.pixels[16 to 15]?.color?.rgb)
 
     }
 

@@ -23,7 +23,7 @@ class ImageTools {
     fun writeImage(path: String, image: SpriteSheet) {
         val bufferedImage = BufferedImage(image.width, image.height, BufferedImage.TYPE_INT_ARGB);
         image.pixels.values.forEach {
-            bufferedImage.setRGB(it.x, it.y, it.color)
+            bufferedImage.setRGB(it.x, it.y, it.color.rgb)
         }
         ImageIO.write(bufferedImage, "png", File(path))
     }

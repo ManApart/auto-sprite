@@ -24,7 +24,7 @@ class SpriteSheet(val pixels: Map<Pair<Int, Int>, Pixel>) {
     }
 
     private fun replaceColor(pixel: Pixel, search: Int, replacement: Int): Pixel {
-        return if (pixel.color == search) {
+        return if (pixel.color.rgb == search) {
             Pixel(pixel.x, pixel.y, replacement)
         } else {
             pixel

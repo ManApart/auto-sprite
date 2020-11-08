@@ -13,7 +13,7 @@ class SpriteFinderTest {
                 listOf(0, 0, 1, 0, 0)
             )
         )
-        val sprites = findSprites(image, 0)
+        val sprites = findSprites(image, 0, minAlpha = 0)
 
         assertEquals(1, sprites.size)
         assertEquals(5, sprites.first().pixels.size)
@@ -27,7 +27,20 @@ class SpriteFinderTest {
                 listOf(1, 0),
             )
         )
-        val sprites = findSprites(image, 0)
+        val sprites = findSprites(image, 0, 2, 0)
+
+        assertEquals(0, sprites.size)
+    }
+
+    @Test
+    fun ignoreTransparentPixels() {
+        val image = buildSpriteSheet(
+            listOf(
+                listOf(1, 1),
+                listOf(1, 1),
+            )
+        )
+        val sprites = findSprites(image, 0, 2, 100)
 
         assertEquals(0, sprites.size)
     }
@@ -42,7 +55,7 @@ class SpriteFinderTest {
                 listOf(0, 0, 1, 0, 0)
             )
         )
-        val sprites = findSprites(image, 0)
+        val sprites = findSprites(image, 0, minAlpha = 0)
 
         assertEquals(2, sprites.size)
         assertEquals(3, sprites.first().pixels.size)
@@ -57,7 +70,7 @@ class SpriteFinderTest {
                 listOf(0, 0, 0, 0, 0)
             )
         )
-        val sprites = findSprites(image, 0)
+        val sprites = findSprites(image, 0, minAlpha = 0)
 
         assertEquals(0, sprites.size)
     }
