@@ -14,8 +14,8 @@ fun createSpriteSheet(grid: Grid, sprites: List<Sprite>): SpriteSheet {
             column += 1
             originX += grid.width
 
-
-            sprite.moveTo(originX, originY)
+            val yOffset = grid.height - sprite.rectangle.height
+            sprite.moveTo(originX, originY + yOffset)
         }
 
     return SpriteSheet(newSprites)
