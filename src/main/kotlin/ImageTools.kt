@@ -8,7 +8,7 @@ import javax.imageio.ImageIO
 
 class ImageTools {
     fun loadImage(path: String): SpriteSheet {
-        val bufferedImage = ImageIO.read(this::class.java.getResourceAsStream(path))
+        val bufferedImage = ImageIO.read(File(path))
         val image = mutableMapOf<Pair<Int, Int>, Pixel>()
 
         for (x in 0 until bufferedImage.width) {

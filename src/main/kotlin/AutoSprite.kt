@@ -1,19 +1,26 @@
+import java.io.File
+
 fun main() {
-    convertImage("SpriteTest.png")
+    File("./input").listFiles()!!.forEach {
+        convertImage(it.path)
+    }
 }
 
-fun convertImage(path: String) {
+fun convertImage(path: String, createBoundingBoxes: Boolean = false) {
     val imageTools = ImageTools()
+    val fileName = path.substring(1 + path.lastIndexOf("\\"), path.length)
     val image = imageTools.loadImage(path)
     val backgroundColor = findBackgroundColor(image)
     val sprites = findSprites(image, backgroundColor)
 
-    imageTools.writeBoundingBoxes("./converted/bounding-$path", sprites, image.width, image.height)
+    if (createBoundingBoxes) {
+        imageTools.writeBoundingBoxes("./converted/bounding-$fileName", sprites, image.width, image.height)
+    }
 
     val grid = calculateGrid(sprites)
 
     val converted = createSpriteSheet(grid, sprites)
-    imageTools.writeImage("./converted/$path", converted)
+    imageTools.writeImage("./converted/$fileName", converted)
 }
 
 fun findBackgroundColor(image: SpriteSheet): Int {
