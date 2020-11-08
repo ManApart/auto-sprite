@@ -14,10 +14,10 @@ class SpriteTest {
 
         assertEquals(0, sprite.rectangle.x)
         assertEquals(0, sprite.rectangle.y)
-        assertEquals(10, sprite.rectangle.width)
-        assertEquals(5, sprite.rectangle.height)
-        assertEquals(10.0, sprite.rectangle.maxX)
-        assertEquals(5.0, sprite.rectangle.maxY)
+        assertEquals(11, sprite.rectangle.width)
+        assertEquals(6, sprite.rectangle.height)
+        assertEquals(10, sprite.rectangle.maxX)
+        assertEquals(5, sprite.rectangle.maxY)
     }
 
     @Test
@@ -31,10 +31,10 @@ class SpriteTest {
 
         assertEquals(-1, sprite.rectangle.x)
         assertEquals(-2, sprite.rectangle.y)
-        assertEquals(11, sprite.rectangle.width)
-        assertEquals(7, sprite.rectangle.height)
-        assertEquals(10.0, sprite.rectangle.maxX)
-        assertEquals(5.0, sprite.rectangle.maxY)
+        assertEquals(12, sprite.rectangle.width)
+        assertEquals(8, sprite.rectangle.height)
+        assertEquals(10, sprite.rectangle.maxX)
+        assertEquals(5, sprite.rectangle.maxY)
     }
 
     @Test

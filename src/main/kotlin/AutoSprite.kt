@@ -1,7 +1,10 @@
 import java.io.File
 
 fun main() {
-    File("./input").listFiles()!!.forEach {
+//    File("./input").listFiles()!!.forEach {
+//        convertImage(it.path)
+//    }
+    File("./input").listFiles()!!.filter { it.path.contains("WideStrip") }.forEach {
         convertImage(it.path)
     }
 }

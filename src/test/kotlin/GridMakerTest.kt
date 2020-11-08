@@ -23,7 +23,7 @@ class GridMakerTest {
         val grid = calculateGrid(sprites)
         assertEquals(0, grid.x)
         assertEquals(0, grid.y)
-        assertEquals(10, grid.width)
-        assertEquals(7, grid.height)
+        assertEquals(11, grid.width)
+        assertEquals(8, grid.height)
     }
 }

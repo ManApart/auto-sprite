@@ -37,7 +37,7 @@ class ImageTools {
         graph.color = Color.white
 
         sprites.forEach {
-            graph.fill(it.rectangle)
+            graph.fill(it.rectangle.toAWTRect())
         }
 
         graph.dispose()
