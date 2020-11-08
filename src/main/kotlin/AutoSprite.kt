@@ -3,7 +3,7 @@ import java.lang.IllegalArgumentException
 
 fun main() {
     File("./input").listFiles()!!.forEach {
-        println("Converting ${it.name}")
+        println("\nConverting ${it.name}")
         convertImage(it.path)
     }
 //    File("./input").listFiles()!!.filter { it.path.contains("Flying") }.forEach {
@@ -14,6 +14,8 @@ fun main() {
 fun convertImage(path: String, minPixels: Int = 100, minAlpha: Int = 20, createBoundingBoxes: Boolean = false) {
     val imageTools = ImageTools()
     val fileName = path.substring(1 + path.lastIndexOf("\\"), path.length)
+    val name = fileName.substring(0, fileName.lastIndexOf("."))
+    val extension = fileName.substring(fileName.lastIndexOf("."), fileName.length)
     val image = imageTools.loadImage(path)
     val backgroundColor = findBackgroundColor(image)
     val sprites = findSprites(image, backgroundColor, minPixels, minAlpha)
@@ -28,8 +30,10 @@ fun convertImage(path: String, minPixels: Int = 100, minAlpha: Int = 20, createB
 
     val grid = calculateGrid(sprites)
 
+    println("Created ${grid.width}x${grid.height} grid for ${sprites.size} images.")
+
     val converted = createSpriteSheet(grid, sprites)
-    imageTools.writeImage("./converted/$fileName", converted)
+    imageTools.writeImage("./converted/$name-${grid.width}x${grid.height}$extension", converted)
 }
 
 fun findBackgroundColor(image: SpriteSheet): Int {
