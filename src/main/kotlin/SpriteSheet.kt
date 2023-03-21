@@ -1,3 +1,5 @@
+import java.awt.Color
+
 class SpriteSheet(val pixels: Map<Pair<Int, Int>, Pixel>) {
     constructor(sprites: List<Sprite>) : this(spritesToPixels(sprites))
 
@@ -44,8 +46,21 @@ class SpriteSheet(val pixels: Map<Pair<Int, Int>, Pixel>) {
         )
     }
 
+    fun replaceablePixelsWithAlpha(backgroundColor: Int): SpriteSheet {
+        val alpha = Color.TRANSLUCENT
+        return pixels.values.map { pixel ->
+            if (shouldReplace(pixel, backgroundColor)) Pixel(pixel.x, pixel.y, alpha) else pixel
+        }.toSpriteSheet()
+    }
+
+    private fun shouldReplace(pixel: Pixel, backgroundColor: Int): Boolean {
+        return getNeighbors(pixel).all { it.color.rgb == backgroundColor }
+    }
+
 }
 
 private fun spritesToPixels(sprites: List<Sprite>): Map<Pair<Int, Int>, Pixel> {
     return sprites.flatMap {it.pixels}.associateBy { Pair(it.x, it.y) }
 }
+
+fun List<Pixel>.toSpriteSheet() = SpriteSheet(this.associateBy { Pair(it.x, it.y) })
